@@ -19,7 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -54,7 +54,7 @@ fun Greeting() {
     val listRadio = listOf("3 месяцев (3%)", "6 месяцев (5%)", "12 месяцев (9%)")
 
     var number by remember {
-        mutableIntStateOf(0)
+        mutableDoubleStateOf(0.0)
     }
     var textF by remember {
         mutableStateOf("")
@@ -106,13 +106,22 @@ fun Greeting() {
             }
         } // Выбор срока
         Button(
-            onClick = { /*TODO*/ },
+            onClick = {
+                var gg = textF.toDouble()
+                gg = when (selectedOption) {
+                    "3 месяцев (3%)" -> gg + (gg * 0.03 * 0.25)
+                    "6 месяцев (5%)" -> gg + (gg * 0.05 * 0.5)
+                    "12 месяцев (9%)" -> gg + (gg * 0.09)
+                    else -> 0.0
+                }
+                number = gg
+            },
             Modifier.fillMaxWidth()
         ) {
             Text(buttonText)
         }
         Text(text = number.toString())
-        
+
     }
 }
 

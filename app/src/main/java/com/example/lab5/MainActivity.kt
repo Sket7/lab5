@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
@@ -49,6 +50,7 @@ class MainActivity : ComponentActivity() {
 fun Greeting() {
     val first = "Введите сумму"
     val second = "Выберите срок"
+    val buttonText = "Провести расчёт"
     val listRadio = listOf("3 месяцев (3%)", "6 месяцев (5%)", "12 месяцев (9%)")
 
     var number by remember {
@@ -77,7 +79,7 @@ fun Greeting() {
                 },
                 Modifier.fillMaxWidth(),
             )
-        }
+        } // Ввод суммы
         Row(
             Modifier
                 .fillMaxWidth()
@@ -89,7 +91,9 @@ fun Greeting() {
             Column(Modifier.selectableGroup()) {
                 listRadio.forEach { radioText ->
                     Row(
-                        Modifier.fillMaxWidth().height(56.dp),
+                        Modifier
+                            .fillMaxWidth()
+                            .height(56.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         RadioButton(
@@ -100,7 +104,15 @@ fun Greeting() {
 
                 }
             }
+        } // Выбор срока
+        Button(
+            onClick = { /*TODO*/ },
+            Modifier.fillMaxWidth()
+        ) {
+            Text(buttonText)
         }
+        Text(text = number.toString())
+        
     }
 }
 
